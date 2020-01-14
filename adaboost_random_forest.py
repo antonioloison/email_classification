@@ -25,16 +25,26 @@ print("Data loaded")
 print(X_train.shape)
 print(y_train.shape)
 
-X_train, X_test, y_train, y_test = train_test_split(X_train, y_train, test_size=0.2)
+def training():
+    classifier = AdaBoostClassifier(RandomForestClassifier())
 
+    classifier.fit(X_train, y_train)
 
-classifier = AdaBoostClassifier(RandomForestClassifier())
+    print(f1_score(classifier.predict(X_train), y_train, average='macro'))
 
+    filename = 'models_test/adaboost_model_example.sav'
+    pickle.dump(classifier, open(filename, 'wb'))
 
-classifier.fit(X_train, y_train)
+training()
 
-print(f1_score(classifier.predict(X_train), y_train, average='macro'))
-print(f1_score(classifier.predict(X_test), y_test, average='macro'))
+def prediction():
 
-filename = 'models/adaboost_selected_features.sav'
-pickle.dump(classifier, open(filename, 'wb'))
+    classifier = pickle.load(open('models_test/adaboost_model_example.sav', 'rb'))
+
+    preds = classifier.predict(test_df)
+
+    pred_df = pd.DataFrame(preds, columns=['label'])
+
+    pred_df.to_csv("predictions_test/adaboost_example.csv", index=True, index_label='Id')
+
+prediction()
