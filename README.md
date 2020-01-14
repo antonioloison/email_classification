@@ -9,3 +9,11 @@ To test our models, models and predictions are in the non _test folders and file
 
 ### B. Test by creating your own models and predictions
 To generate code please save models and csv files in folders or csv files ending by _test.
+
+### C. Test Order
+Launch files in these order without forgeting to uncomment some execution lines in files:
+- feature_creation_and_preprocessing.py
+- feature_selection.py
+- train models and predict: neural_network.py, support_vector_classifier.py and adaboost_random_forest.py
+- vote_from_csvs.py
+
