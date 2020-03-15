@@ -1,4 +1,4 @@
-# ml_assignment_2
+# Email classification from email metadata
 
 Model consisting in the combination of a neural network, a support vector classifier and a adaboosted random forest.
 
